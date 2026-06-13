@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cẩm nang Lãnh đạo ĐMST 2026 - VietinBank</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root { --vb-blue: #002D62; --vb-red: #C8102E; }
+        .bg-vb-blue { background-color: var(--vb-blue); }
+        .text-vb-blue { color: var(--vb-blue); }
+        .active-tab { border-bottom: 4px solid var(--vb-red); color: var(--vb-red); font-weight: 800; }
+        .content-section { display: none; }
+        .content-section.active { display: block; }
+        .answer-correct { background-color: #d1fae5; border: 2px solid #10b981; }
+        .answer-wrong { background-color: #fee2e2; border: 2px solid #ef4444; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b-4 border-vb-red sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-6 py-6 text-center">
+            <h1 class="text-3xl md:text-4xl font-black text-vb-blue uppercase tracking-tight">Cẩm nang Lãnh đạo ĐMST 2026</h1>
+            <p class="mt-2 text-gray-600 font-medium italic">"Dẫn dắt thay đổi - Tối ưu vận hành - Định hình tương lai"</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="max-w-5xl mx-auto px-6 py-4 flex justify-center space-x-8 mt-4 bg-white rounded-lg shadow-sm">
+        <button onclick="showTab('manual')" id="btn-manual" class="active-tab pb-2 transition-all uppercase text-sm font-bold">Kiến thức trọng tâm</button>
+        <button onclick="showTab('quiz')" id="btn-quiz" class="pb-2 transition-all uppercase text-sm font-bold hover:text-vb-red">40 Câu hỏi thực chiến</button>
+    </nav>
+
+    <main class="max-w-5xl mx-auto px-6 py-8">
+        
+        <!-- SECTION: MANUAL -->
+        <div id="section-manual" class="content-section active space-y-10">
+            <div class="bg-white p-8 rounded-2xl shadow-sm border-l-8 border-vb-blue">
+                <h2 class="text-2xl font-black text-vb-blue mb-4">Module 1: SEE - Tư duy Hệ thống</h2>
+                <p class="text-gray-700 leading-relaxed">Sử dụng 4M1E (Man, Method, Machine, Material, Environment) để phân tích "điểm tắc nghẽn" tại chi nhánh thay vì chỉ nhìn vào báo cáo số liệu bề nổi. Tư duy 5 Whys giúp truy vết đến gốc rễ vấn đề.</p>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-sm border-l-8 border-vb-red">
+                <h2 class="text-2xl font-black text-vb-red mb-4">Module 2: SOLVE - Thiết kế & SCAMPER</h2>
+                <p class="text-gray-700 leading-relaxed">Áp dụng SCAMPER (Substitute, Combine, Adapt, Modify, Put to other uses, Eliminate, Reverse) để tối ưu quy trình giải ngân và dịch vụ khách hàng.</p>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-sm border-l-8 border-vb-blue">
+                <h2 class="text-2xl font-black text-vb-blue mb-4">Module 3: SHIFT - Dẫn dắt Thay đổi</h2>
+                <p class="text-gray-700 leading-relaxed">Áp dụng Kotter's 8 Steps. Tập trung vào "Quick Wins" và tạo "Sense of Urgency" để đội ngũ tự nguyện chuyển mình thay vì bị ép buộc.</p>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-sm border-l-8 border-vb-red">
+                <h2 class="text-2xl font-black text-vb-red mb-4">Module 4: SUSTAIN - Thể chế hóa</h2>
+                <p class="text-gray-700 leading-relaxed">Xây dựng Psychological Safety để khuyến khích thử sai. Đưa đổi mới sáng tạo thành KPI đo lường hiệu quả định kỳ thay vì là dự án phong trào.</p>
+            </div>
+        </div>
+
+        <!-- SECTION: QUIZ -->
+        <div id="section-quiz" class="content-section space-y-6">
+            <div id="quiz-list" class="space-y-6"></div>
+            <button onclick="submitQuiz()" class="w-full bg-vb-blue text-white py-4 font-bold rounded-xl hover:bg-blue-900 transition shadow-lg">NỘP BÀI & XEM KẾT QUẢ</button>
+            <div id="result-summary" class="hidden text-center p-6 bg-white rounded-xl shadow-lg border-2"></div>
+        </div>
+    </main>
+
+    <script>
+        const questions = [
+            // Module 1: SEE (1-10)
+            { q: "Mục tiêu cốt lõi của tư duy hệ thống (SEE) là gì?", a: ["Tăng KPI nhân sự", "Nhìn thấu nguyên nhân gốc rễ thay vì hiện tượng", "Giảm giờ làm thêm", "Chỉ tập trung vào báo cáo"], c: 1 },
+            { q: "Mô hình 4M1E bao gồm những yếu tố nào?", a: ["Money, Market, Man, Method, Machine", "Man, Method, Machine, Material, Environment", "Market, Material, Money, Method, Environment", "Machine, Method, Man, Money, Management"], c: 1 },
+            { q: "Kỹ thuật 5 Whys dùng để làm gì?", a: ["Thẩm vấn nhân viên làm sai", "Truy tìm gốc rễ vấn đề", "Tạo áp lực KPI", "Báo cáo cấp trên"], c: 1 },
+            { q: "Khi khách hàng than phiền về thời gian giải ngân, 'Man' trong 4M1E gợi ý bạn kiểm tra điều gì?", a: ["Năng lực nhân viên xử lý hồ sơ", "Phần mềm bị treo", "Thủ tục quá rườm rà", "Máy in bị hỏng"], c: 0 },
+            { q: "Tại sao nên áp dụng tư duy hệ thống khi có sự cố tại quầy?", a: ["Để nhanh chóng quy trách nhiệm", "Để nhìn thấy sự kết nối giữa quy trình và con người", "Để bỏ qua quy định", "Để xin thêm nhân sự"], c: 1 },
+            { q: "Trong tư duy hệ thống, 'Environment' ảnh hưởng như thế nào tới ĐMST?", a: ["Không ảnh hưởng", "Văn hóa làm việc quyết định sự sáng tạo", "Chỉ ảnh hưởng tới điều hòa", "Chỉ ảnh hưởng tới trang trí"], c: 1 },
+            { q: "Công cụ nào dùng để lập bản đồ trải nghiệm khách hàng?", a: ["Customer Journey Map", "Bảng lương", "Danh sách khách hàng nợ xấu", "Sơ đồ tổ chức"], c: 0 },
+            { q: "Bước đầu tiên trong quy trình tư duy hệ thống là gì?", a: ["Làm ngay", "Quan sát và thu thập thông tin", "Phạt nhân viên", "Báo cáo sếp"], c: 1 },
+            { q: "Tư duy hệ thống giúp tránh bẫy nào sau đây?", a: ["Giải quyết phần ngọn", "Tăng doanh số", "Tăng sự gắn kết", "Tiết kiệm thời gian"], c: 0 },
+            { q: "Tại sao cần phân tích đa chiều trong tư duy SEE?", a: ["Để làm báo cáo dài", "Vì một vấn đề thường là kết quả của nhiều yếu tố", "Để làm việc lâu hơn", "Để thu hút sự chú ý"], c: 1 },
+            
+            // Module 2: SOLVE (11-20)
+            { q: "Chữ 'S' trong SCAMPER có nghĩa là gì?", a: ["Sửa chữa", "Thay thế (Substitute)", "Sáng tạo", "Sắp xếp"], c: 1 },
+            { q: "Chữ 'E' trong SCAMPER khuyến khích điều gì?", a: ["Loại bỏ quy trình dư thừa", "Ép nhân viên làm nhanh", "E-mail nhiều hơn", "Ekip đông hơn"], c: 0 },
+            { q: "Khi gộp 2 sản phẩm bảo hiểm và vay vốn, bạn đang áp dụng kỹ thuật gì?", a: ["S", "C (Combine)", "A", "R"], c: 1 },
+            { q: "Việc đơn giản hóa thủ tục phê duyệt hồ sơ SME thuộc kỹ thuật nào?", a: ["M (Modify/Simplify)", "S", "C", "A"], c: 0 },
+            { q: "Thiết kế giải pháp ĐMST cần lấy yếu tố nào làm trọng tâm?", a: ["Ý muốn lãnh đạo", "Trải nghiệm khách hàng", "Công nghệ cao nhất", "Chi phí thấp nhất"], c: 1 },
+            { q: "Tại sao cần 'Thử nghiệm' (Prototype) trước khi triển khai quy mô lớn?", a: ["Để trì hoãn", "Để giảm thiểu rủi ro", "Để làm thủ tục", "Để nhân viên vui"], c: 1 },
+            { q: "Kỹ thuật 'Đảo ngược' (Reverse) trong SCAMPER áp dụng cho việc gì?", a: ["Đổi quy trình hiện tại thành ngược lại để tìm ý tưởng mới", "Đổi nhân viên", "Đổi phòng ban", "Đổi chi nhánh"], c: 0 },
+            { q: "ĐMST thành công tại VietinBank thường đến từ đâu?", a: ["Lệnh cấp trên", "Giải quyết nỗi đau thực tế của khách hàng", "Sao chép đối thủ", "Ngẫu nhiên"], c: 1 },
+            { q: "Việc thay thế giao dịch tại quầy bằng Kiosk thuộc SCAMPER nào?", a: ["Substitute", "Combine", "Eliminate", "Rearrange"], c: 0 },
+            { q: "Tại sao cần phải liên tục 'Filter' (lọc) ý tưởng?", a: ["Để chọn ra giải pháp khả thi nhất", "Vì không muốn triển khai nhiều", "Vì sợ sai", "Vì không đủ nhân sự"], c: 0 },
+
+            // Module 3: SHIFT (21-30)
+            { q: "Trong 8 bước của Kotter, bước 1 là gì?", a: ["Xây dựng liên minh", "Thiết lập sự khẩn cấp", "Ăn mừng", "Đào tạo"], c: 1 },
+            { q: "Tại sao cần xây dựng 'Liên minh nòng cốt'?", a: ["Để đối phó cấp trên", "Để tạo sự ủng hộ vững chắc cho thay đổi", "Để chia sẻ công việc", "Để đi nhậu"], c: 1 },
+            { q: "Quick Wins là gì?", a: ["Chiến thắng nhỏ nhưng tạo niềm tin lớn", "Chiến thắng lớn", "Dự án thất bại", "Báo cáo nhanh"], c: 0 },
+            { q: "Truyền thông tầm nhìn chiến lược cần phải?", a: ["Đơn giản và nhất quán", "Phức tạp", "Giấu kín", "Chỉ gửi email"], c: 0 },
+            { q: "Khi gặp kháng cự thay đổi, cách xử lý tốt nhất là gì?", a: ["Kỷ luật", "Lắng nghe nỗi sợ và giải thích ý nghĩa", "Bỏ qua", "Đuổi việc"], c: 1 },
+            { q: "Bước 'Thể chế hóa' trong Kotter giúp gì?", a: ["Đưa thay đổi vào văn hóa", "Kết thúc dự án", "Báo cáo tổng kết", "Khen thưởng"], c: 0 },
+            { q: "Trao quyền (Empowerment) cho nhân viên có nghĩa là gì?", a: ["Để họ làm gì thì làm", "Xóa bỏ rào cản hành chính để họ hành động", "Phó mặc trách nhiệm", "Cho họ nghỉ làm"], c: 1 },
+            { q: "Lãnh đạo thay đổi cần tránh điều gì nhất?", a: ["Tự mãn sau thành công nhỏ", "Truyền thông nhiều", "Trao quyền", "Lắng nghe"], c: 0 },
+            { q: "Sự khẩn cấp trong thay đổi có phải là sự hoang mang?", a: ["Có", "Không, nó là sự nhận thức về thách thức", "Có nếu cần thiết", "Không liên quan"], c: 1 },
+            { q: "Vai trò của PGĐ trong SHIFT là?", a: ["Là người thực thi mọi việc", "Là người truyền cảm hứng và phá bỏ rào cản", "Là người ngồi giám sát", "Là người ký duyệt"], c: 1 },
+
+            // Module 4: SUSTAIN (31-40)
+            { q: "Psychological Safety là nền tảng của?", a: ["Sự sáng tạo", "Sự im lặng", "Sự sợ hãi", "Sự kiểm soát"], c: 0 },
+            { q: "Để tạo tâm lý an toàn, lãnh đạo cần làm gì?", a: ["Phạt nặng khi sai", "Khuyến khích thử nghiệm và học hỏi", "Không bao giờ nhận lỗi", "Cấm phản biện"], c: 1 },
+            { q: "Innovation KPI khác KPI thông thường ở đâu?", a: ["Đo lường sự đổi mới/thử nghiệm", "Đo lường tiền", "Đo lường thời gian", "Đo lường sự tuân thủ"], c: 0 },
+            { q: "Feedback Loop từ khách hàng giúp gì cho sự bền vững?", a: ["Cung cấp dữ liệu để điều chỉnh giải pháp", "Để làm phiền khách hàng", "Để báo cáo", "Để tăng thêm việc"], c: 0 },
+            { q: "Thất bại thông minh là gì?", a: ["Thất bại khi đã thử nghiệm bài bản", "Thất bại do không làm", "Thất bại do lỗi hệ thống", "Thất bại do lười"], c: 0 },
+            { q: "Văn hóa ĐMST tại ngân hàng cần gì để duy trì?", a: ["Sự cam kết bền bỉ", "Sự hứng khởi nhất thời", "Tiền thưởng nhiều", "Không cần gì cả"], c: 0 },
+            { q: "Ghi nhận trong ĐMST nên tập trung vào đâu?", a: ["Kết quả cuối cùng", "Nỗ lực tiên phong và giải pháp mới", "Số lượng báo cáo", "Số lượng cuộc họp"], c: 1 },
+            { q: "Hệ thống phản hồi nội bộ giúp ích gì?", a: ["Giảm sự đứt gãy thông tin", "Tăng sự quan liêu", "Để phạt người sai", "Không quan trọng"], c: 0 },
+            { q: "Tại sao ĐMST cần gắn liền với KPI?", a: ["Vì nó là ưu tiên chiến lược", "Vì thích kiểm tra", "Vì không biết đo gì", "Để giảm lương"], c: 0 },
+            { q: "Mục tiêu cuối cùng của SUSTAIN là?", a: ["Đổi mới trở thành DNA của chi nhánh", "Hoàn thành chỉ tiêu tháng", "Giảm số lượng nhân viên", "Tăng cường quy trình"], c: 0 }
+        ];
+
+        function showTab(tab) {
+            document.getElementById('section-manual').classList.toggle('active', tab === 'manual');
+            document.getElementById('section-quiz').classList.toggle('active', tab === 'quiz');
+            document.getElementById('btn-manual').classList.toggle('active-tab', tab === 'manual');
+            document.getElementById('btn-quiz').classList.toggle('active-tab', tab === 'quiz');
+        }
+
+        function renderQuiz() {
+            const container = document.getElementById('quiz-list');
+            questions.forEach((q, idx) => {
+                const div = document.createElement('div');
+                div.className = "p-6 bg-white rounded-xl shadow-sm border border-gray-100";
+                div.innerHTML = `<p class="font-bold text-lg mb-4 text-vb-blue">${idx + 1}. ${q.q}</p>
+                    <div class="grid gap-3">
+                        ${q.a.map((opt, i) => `
+                            <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50 transition">
+                                <input type="radio" name="q${idx}" value="${i}" class="mr-3"> ${opt}
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            questions.forEach((q, idx) => {
+                const selected = document.querySelector(`input[name="q${idx}"]:checked`);
+                const options = document.querySelectorAll(`input[name="q${idx}"]`);
+                
+                options.forEach((opt, i) => {
+                    const label = opt.parentElement;
+                    if (i === q.c) {
+                        label.classList.add('answer-correct');
+                    } else if (selected && parseInt(selected.value) === i) {
+                        label.classList.add('answer-wrong');
+                    }
+                    opt.disabled = true;
+                });
+
+                if (selected && parseInt(selected.value) === q.c) score++;
+            });
+
+            const res = document.getElementById('result-summary');
+            res.classList.remove('hidden');
+            res.innerHTML = `<p class="text-2xl font-bold">Kết quả: ${score} / ${questions.length}</p>
+                             <p class="text-sm mt-2">${score > 30 ? 'Xuất sắc! Anh/Chị đã nắm vững tư duy lãnh đạo ĐMST.' : 'Cần ôn tập thêm để tối ưu tư duy quản lý.'}</p>`;
+        }
+
+        window.onload = renderQuiz;
+    </script>
+</body>
+</html>
